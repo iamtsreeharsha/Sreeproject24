@@ -128,4 +128,29 @@ public class FakeStoreProductService implements ProductService {
         return Categories;
     }
 
+    @Override
+    public List<Product> getProductsByCategory(String category) {
+        FakeStoreProductDTO[] response = restTemplate
+                .getForObject("https://fakestoreapi.com/products/category/" + category,
+                        FakeStoreProductDTO[].class);
+
+        List<Product> products = new ArrayList<>();
+        for(FakeStoreProductDTO dto : response) {
+            products.add(dto.toProduct());
+        }
+        return products;
+    }
+
+    /*@Override
+    public List<Product> getProductsByCategory(String category) {
+        FakeStoreProductDto[] response = restTemplate
+                .getForObject("https://fakestoreapi.com/products/category/" + category,
+                        FakeStoreProductDto[].class);
+
+        List<Product> products = new ArrayList<>();
+        for(FakeStoreProductDto dto : response) {
+            products.add(dto.toProduct());
+        }
+        return products;
+    }*/
 }

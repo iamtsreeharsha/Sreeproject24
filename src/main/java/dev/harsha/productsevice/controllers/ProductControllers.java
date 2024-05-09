@@ -68,4 +68,14 @@ public class ProductControllers {
         return productService.deleteSingleProduct(id);
     }
 
+    /*@GetMapping("/products/{category}")
+    public List<Product> getProductsByCategory(@PathVariable("category") String category){
+        return productService.getProductsByCategory(category);
+    }*/
+
+    @GetMapping("/products/category/{category}")
+    public List<Product> getProductsByCategory(@PathVariable("category") String category){
+        return productService.getProductsByCategory(category);
+    }
+
 }
